@@ -1,0 +1,17 @@
+<h1>結果</h1>
+
+<p>あなたの答え: <%= @chosen %></p>
+<p>正解: <%= @color.name %></p>
+
+<% if @correct %>
+  <p style="color: green;">🎉 正解！</p>
+<% else %>
+  <p style="color: red;">😢 不正解</p>
+<% end %>
+
+<% if session[:question_number] >= 10 %>
+  <p>ゲーム終了！スコア: <%= session[:score] %> / 10</p>
+  <%= link_to "もう一度遊ぶ", reset_colors_path, class: "btn btn-primary" %>
+<% else %>
+  <%= link_to "次の問題へ", random_colors_path, class: "btn btn-success" %>
+<% end %>
