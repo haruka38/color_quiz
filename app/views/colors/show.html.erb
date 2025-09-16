@@ -1,0 +1,14 @@
+
+<div style="width:200px; height:200px; background-color:<%= @color.hex %>; border: 1px solid #000;"></div>
+
+<p>この色の名前はどれ？</p>
+
+<%= form_with url: answer_color_path(@color), method: :post, data: { turbo: false } do %>
+  <% @color.choices.shuffle.each_with_index do |choice, i| %>
+    <div>
+      <%= radio_button_tag :choice, choice, false, id: "choice_#{i}" %>
+      <%= label_tag "choice_#{i}", choice %>
+    </div>
+  <% end %>
+  <%= submit_tag "回答" %>
+<% end %>
